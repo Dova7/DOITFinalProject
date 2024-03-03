@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "ff99177b-1443-446e-addd-0000f6c7b081",
+    "FirstName": "giorgi",
+    "LastName": "gujarelidze",
+    "IdentityNumber": "01009587548",
+    "Pin": "4441",
+    "Balance": 0
+  },
+  {
+    "Id": "6deed562-4370-45b4-b048-72a4373e401b",
+    "FirstName": "dasasd",
+    "LastName": "sdadas",
+    "IdentityNumber": "01236547859",
+    "Pin": "5959",
+    "Balance": 0
+  }
+]
