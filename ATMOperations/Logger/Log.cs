@@ -6,7 +6,7 @@ namespace ATMOperations.Logger
 {
     public class Log
     {
-        private const string _fileLocation = "C:\\Users\\gujar\\source\\repos\\FinalProject\\ATMOperations\\Logger\\Log.json";
+        private string _fileLocation = Path.Combine(Directory.GetCurrentDirectory(),"Log.json");
 
         public void LogOperation(string message)
         {

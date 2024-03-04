@@ -6,7 +6,7 @@ namespace Hangman.Repository
 {
     public class PlayerXMLRepository
     {
-        private const string _fileLocation = "C:\\Users\\gujar\\source\\repos\\FinalProject\\Hangman\\RecordData\\PlayerRecords.xml";
+        private string _fileLocation = Path.Combine(Directory.GetCurrentDirectory(),"PlayerRecord.xml");
         private List<Player> _data = new();
         public PlayerXMLRepository()
         {
@@ -39,7 +39,7 @@ namespace Hangman.Repository
             }
             return result;
         }
-        private static void Save(List<Player> players)
+        private void Save(List<Player> players)
         {
             using (var stream = new FileStream(_fileLocation, FileMode.Create))
             {

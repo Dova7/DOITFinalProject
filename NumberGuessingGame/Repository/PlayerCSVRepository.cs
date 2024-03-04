@@ -4,7 +4,7 @@ namespace NumberGuessingGame.Repository
 {
     public class PlayerCSVRepository
     {
-        private const string _fileLocation = "C:\\Users\\gujar\\source\\repos\\FinalProject\\NumberGuessingGame\\RecordData\\PlayerRecords.csv";
+        private string _fileLocation = Path.Combine(Directory.GetCurrentDirectory(),"PlayerRecord.csv");
         private List<Player> _data;
 
         public PlayerCSVRepository()

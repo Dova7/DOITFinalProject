@@ -6,7 +6,7 @@ namespace ATMOperations.Repository
 {
     public class UserJSONRepository
     {
-        private const string _fileLocation = "C:\\Users\\gujar\\source\\repos\\FinalProject\\ATMOperations\\Data\\Users.json";
+        private string _fileLocation = Path.Combine(Directory.GetCurrentDirectory(),"Users.json");
         private List<User> _data = new();
         Log logger = new Log();
         public UserJSONRepository()
@@ -25,8 +25,7 @@ namespace ATMOperations.Repository
                 return JsonSerializer.Deserialize<List<User>>(data);
             }
             catch (Exception ex)
-            {
-                Console.WriteLine($"\nError parsing Data File: {ex.Message}");
+            {                
                 return new List<User>();
             }
         }
