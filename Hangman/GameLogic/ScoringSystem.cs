@@ -20,7 +20,6 @@ namespace Hangman.GameLogic
                 if (existingPlayer.Score < score)
                 {
                     existingPlayer.Score = score;
-                    playerXMLRepository.RemovePlayer(existingPlayer.Id);
                     playerXMLRepository.UpdatePlayer(existingPlayer);
                 }
             }

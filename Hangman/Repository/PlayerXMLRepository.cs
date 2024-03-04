@@ -23,6 +23,18 @@ namespace Hangman.Repository
             }
             _data = Parse(File.ReadAllText(_fileLocation));
         }
+        private void ReloadData()
+        {
+            if (File.Exists(_fileLocation))
+            {
+                _data = Parse(File.ReadAllText(_fileLocation));
+            }
+            else
+            {
+                _data = new List<Player>();
+            }
+        }
+
         private static List<Player> Parse(string data)
         {
             var result = new List<Player>();
@@ -45,8 +57,9 @@ namespace Hangman.Repository
             {
                 var serializer = new XmlSerializer(typeof(List<Player>));
                 serializer.Serialize(stream, players);
-            }
-        }
+            }            
+        }        
+
         public void AddNewPlayer(Player player)
         {
             if (_data.Count == 0)
@@ -66,7 +79,8 @@ namespace Hangman.Repository
         }
         public void RemovePlayer(int playerId)
         {
-            _data.RemoveAll(player => player.Id == playerId);
+            Player playerToRemove = _data.FirstOrDefault(player => player.Id == playerId);
+            _data.Remove(playerToRemove);
             Save(_data);
         }
         public void UpdatePlayer(Player updatedPlayer)
@@ -82,6 +96,5 @@ namespace Hangman.Repository
                 throw new ArgumentException($"Player with ID {updatedPlayer.Id} not found.");
             }
         }
-
     }
 }
