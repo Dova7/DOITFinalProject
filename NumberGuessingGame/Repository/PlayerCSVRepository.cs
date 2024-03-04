@@ -52,7 +52,7 @@ namespace NumberGuessingGame.Repository
                 writer.WriteLine(playerString);
             }
         }
-        private static Player ParsePlayers(string input)
+        private Player ParsePlayers(string input)
         {
             var data = input.Split(',');
             if (data.Length != 3)
@@ -68,6 +68,7 @@ namespace NumberGuessingGame.Repository
         private static string ToCSV(Player player) => $"{player.Id},{player.Name},{player.Score}";
         public List<Player> GetAllPlayers()
         {
+            ReloadData();
             return _data;
         }
         public void RemovePlayer(int playerId)
@@ -89,6 +90,18 @@ namespace NumberGuessingGame.Repository
             foreach (var player in _data)
             {
                 Save(ToCSV(player));
+            }
+        }
+        private void ReloadData()
+        {
+            if (File.Exists(_fileLocation))
+            {
+                _data = new List<Player>();
+                LoadDataFromFile();
+            }
+            else
+            {
+                _data = new List<Player>();
             }
         }
     }

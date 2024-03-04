@@ -57,7 +57,7 @@ namespace Hangman.Repository
             {
                 var serializer = new XmlSerializer(typeof(List<Player>));
                 serializer.Serialize(stream, players);
-            }            
+            }
         }        
 
         public void AddNewPlayer(Player player)
@@ -71,10 +71,11 @@ namespace Hangman.Repository
                 player.Id = _data.Max(x => x.Id) + 1;
             }
             _data.Add(player);
-            Save(_data);
+            Save(_data);            
         }
         public List<Player> GetAllPlayers()
         {
+            ReloadData();
             return _data;
         }
         public void RemovePlayer(int playerId)
