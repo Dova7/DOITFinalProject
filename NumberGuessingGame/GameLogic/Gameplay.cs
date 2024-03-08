@@ -56,10 +56,7 @@ namespace NumberGuessingGame.GamePlay
                     Console.WriteLine($"\nCongratulations! You Guessed the number in {numberOfGuesses} tries.");
                     Console.WriteLine($"Your score for this round is: {score}");
                     Console.WriteLine("Correct number was " + numberToGuess);
-
-                    Console.WriteLine("Enter your name: ");
-                    string? playerName = Console.ReadLine().ToLower();
-                    scoringSystems.AddRecord(playerName, score);
+                    SaveScore(score);
                 }
             }
             Console.WriteLine("\nTry again? (Y/N)");
@@ -82,6 +79,20 @@ namespace NumberGuessingGame.GamePlay
             else
             {
                 PlayGame(maxNumber);
+            }
+        }
+        private void SaveScore(float score)
+        {
+            Console.WriteLine("\nEnter your name: ");
+            string? playerName = Console.ReadLine().ToLower();
+            if (!playerName.All(char.IsLetter) || string.IsNullOrWhiteSpace(playerName))
+            {
+                Console.WriteLine($"\nInvalid input. Please enter a valid name (a-z).");
+                SaveScore(score);
+            }
+            else
+            {
+                scoringSystems.AddRecord(playerName, score);
             }
         }
     }

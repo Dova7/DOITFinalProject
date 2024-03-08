@@ -202,9 +202,17 @@ namespace Hangman.GameLogic
         }
         private void SaveScore(int score)
         {
-            Console.WriteLine("Enter your name: ");
+            Console.WriteLine("\nEnter your name: ");
             string? playerName = Console.ReadLine().ToLower();
-            scoringSystems.AddRecord(playerName, score);
+            if (!playerName.All(char.IsLetter) || string.IsNullOrWhiteSpace(playerName))
+            {
+                Console.WriteLine($"\nInvalid input. Please enter a valid name (a-z).");
+                SaveScore(score);
+            }
+            else
+            {
+                scoringSystems.AddRecord(playerName, score);
+            }
         }
     }
 }
